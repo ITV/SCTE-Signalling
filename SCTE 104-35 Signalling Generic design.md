@@ -7,7 +7,6 @@ Author: Keith Millar
 Date: 01/05/2018   
 Version: 0.1  
 
-
 - Introduction
 - High Level Requirements
    - Generic Requirements
@@ -202,31 +201,18 @@ inserter (encoder).
 The design shall allow an Inserter (encoder) to be configured with the set of
 SCTE-104 messages that it should process and also how it should process them.
 
-```
-Ignore
-Signal
-Generate
-SCTE-
-Stream
-Condition
-Comments
-No No Yes Encoder will perform stream conditioning
-but will not insert an SCTE-35 Splice_insert
-message.
-Yes NA NA No action by encoder
-No Yes Yes Encoder will perform stream conditioning
-and will insert an SCTE-35 Splice_insert
-message.
-No Yes No Encoder will not perform stream
-conditioning, but will insert an SCTE-
-message.
-No No No Encoder may perform some internal action,
-but will not generate an SCTE-35 message.
-(e.g. Modify Subtitle delay)
+| Ignore Signal | Generate SCTE-35 | Stream Condition | Comments |  
+| ------------- | ---------------- | ---------------- | -------- |
+| No | No | Yes | Encoder will perform stream conditioning but will not insert an SCTE-35 Splice_insert message. |  
+| Yes | NA | NA | No action by encoder |
+| No | Yes | Yes | Encoder will perform stream conditioning and will insert an SCTE-35 Splice_insert message. |
+| No | Yes | No | Encoder will not perform stream conditioning, but will insert an SCTE-104 message. |
+| No | No | No | Encoder may perform some internal action, but will not generate an SCTE-35 message. (e.g. Modify Subtitle delay) |
+
 Enabling the above allows a broadcaster to incrementally roll-out
 SCTE104/SCTE-35 messages across its broadcast channels, where a single source
 feed (containing SCTE-104s) is used as input into multiple inserters (encoders).
-```
+
 ## 5. SCTE-104/35 Message Types
 The following sections define the SCTE-104/35 messages that shall be used for 
 specific marker Use Cases.
