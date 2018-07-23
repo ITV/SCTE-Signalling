@@ -59,7 +59,6 @@ broadcasters.
 The following are considered the main high level requirements for signalling
 boundary markers.
 
-
 ### 2.1. Generic Requirements
 - The ability to insert/update a marker independently of another marker. I.e.
 should not require the complete set of markers for a given time point to be
@@ -72,77 +71,89 @@ Insert messages.
 - The ability for the inserter (encoder) via configuration to ignore markers
 within the contribution feed. This is required as within some downstream
 delivery chains they are not required and may be undesirable.
+
 ### 2.2. Carriage within (H)SDI
 - The ability to signal Break markers within the contribution feed.
 - The ability to signal Spot markers within the contribution feed.
 - The ability to signal Programme markers within the contribution feed.
 - The ability to signal Chapter markers within the contribution feed.
-2.3. SCTE-104 over TCP/IP connection to inserter (encoder)
-● The ability to signal Break markers to the inserter (over TCP/IP).
-● The ability to signal Spot markers to the inserter.(over TCP/IP)
-● The ability to signal Programme markers to the inserter (over TCP/IP).
-● The ability to signal Chapter markers within the contribution feed (over
+
+### 2.3. SCTE-104 over TCP/IP connection to inserter (encoder)
+- The ability to signal Break markers to the inserter (over TCP/IP).
+- The ability to signal Spot markers to the inserter.(over TCP/IP)
+- The ability to signal Programme markers to the inserter (over TCP/IP).
+- The ability to signal Chapter markers within the contribution feed (over
 TCP/IP).
-2.4. Inserter requirements
-● Carriage of markers of different types (e.g. Splice Insert, Programme,
+
+### 2.4. Inserter requirements
+- Carriage of markers of different types (e.g. Splice Insert, Programme,
 Chapter, etc), on separate MPEG-PIDs within a service. Using
 PDI_PID_index of SCTE-104 to map to MPEG-PIDs.
-● Support for signalling if inserter (encoder) should perform stream
+- Support for signalling if inserter (encoder) should perform stream
 conditioning for a given SCTE-104 messages.
-● Support for signalling if inserter (encoder) should process an SCTE
+- Support for signalling if inserter (encoder) should process an SCTE
 message.
 
-3. Marker Solution Overview
+## 3. Marker Solution Overview
 
 As can be seen from the diagram above there can be an number of markers with
 the same time point. However this should not force them all to be signalled as a
 single message (SCTE-104 or SCTE-35).
+
 SCTE-104 is the industry standard mechanism for signalling markers to an inserter
 (encoder), and these SCTE-104 messages can be delivered to the inserter using
 SDI-VANC or TCP/IP. The following sections describe the use of these 2 delivery
 mechanisms.
-3.1. SCTE-
-3.1.1. Multiple message flows
+
+## 3.1. SCTE-104
+
+### 3.1.1. Multiple message flows
 To support the requirement for inserting/updating a marker independently of another
 marker, it is required to have separate message flows for each Use Case. Within
 SCTE-104 this is supported by the DPI_PDI_Index field, where each flow has a
 unique DPI_PDI_index.
-3.1.2. Splice Insert Messages
+
+### 3.1.2. Splice Insert Messages
 Today a Splice Insert message is by far the most common method used for
 signalling Spot and Break positions within a A/V stream. Typically a Splice Insert for
 a “from_network” (i.e start of a Spot or Break) is sent and the inserter/device uses
 the duration declared within the Splice Insert message to determine the
 “to_network” point.
+
 It is imperative that Splice Insert messages are supported within a DVB-TA
 standard, as they are widely supported within inserters (encoders) and end devices.
 
-3.1.3. Multiple Segmentation Descriptors
+### 3.1.3. Multiple Segmentation Descriptors
 The SCTE-104/35 specifications support the use of Segmentation Descriptors which
 provide an alternative way of signaling Spot and Break positions, and also allow the
 signalling of non advertising markers such as Programme and Chapter boundaries.
 It is possible to include multiple segmentation descriptors within a single SCTE
 104/35 message however this has a number of potential operational/deployment
 issues as follows:
-● The playout events that signal the insertion of an SCTE-104 message may
+
+- The playout events that signal the insertion of an SCTE-104 message may
 come from multiple sources and therefore its potentially problematic to
 combine them (if they have the same time point) to generate a single
-SCTE104 message.
-● End devices are likely to be more resilient if the SCTE-35 resulting from the
-SCTE-104 fits within a single MPEG-TS packet (or a small number of
+SCTE-104 message.
+- End devices are likely to be more resilient if the SCTE-35 resulting from the
+- SCTE-104 fits within a single MPEG-TS packet (or a small number of
 packets).
+
 Therefore to ease operational and deployment issues it is recommended that a
 SCTE-104 message shall contain one segmentation descriptor. Segmentation
 descriptors may be included within a Splice_insert, Splice_null and a time_signal
 message, and it is recommended that DVB constrains the use of the segmentation
 descriptor to the time_signal message.
-3.2. SCTE-104 over VANC
-3.2.1. Multiple Segmentation Descriptors
+
+## 3.2. SCTE-104 over VANC
+### 3.2.1. Multiple Segmentation Descriptors
 In addition to the concerns described above when delivering segmentation
 descriptors over VANC the following should also be taken into consideration:
-● Poor support within available SCTE-104 VANC inserters to include multiple
+
+- Poor support within available SCTE-104 VANC inserters to include multiple
 segmentation descriptors within a single SCTE-104 message
-● The maximum size of a single SCTE-104 message is 2000 bytes in length
-(​SMPTE.ST2010.2008​ - multi-operation message). This may in the long
+- The maximum size of a single SCTE-104 message is 2000 bytes in length
+([SMPTE.ST2010.2008](https://doi.org/10.5594/SMPTE.ST2010.2008) - multi-operation message). This may in the long
 term be limiting, if all markers had to be in one SCTE-104 message.
 3.2.2. Single message per frame
 When using VANC to deliver SCTE-104, a specific frame can only contain one
