@@ -42,6 +42,8 @@ support multiple broadcast feeds. For example a single feed could support a
 simulcast IPTV service, DTT Service and a DTH service, where each broadcast
 service requires a different set of markers.
 
+![Figure 1](https://github.com/ITV/SCTE-Signalling/blob/master/images/Signalling-with-multiple-end-platforms.png)
+
 The document describes how this can be supported in a flexible way.
 The primary focus of DVB is the signalling of Break and Spot markers, however a
 more holistic view needs to be considered as there is a desire by broadcaster to
@@ -94,6 +96,8 @@ conditioning for a given SCTE-104 messages.
 message.
 
 ## 3. Marker Solution Overview
+
+![Figure 2](https://github.com/ITV/SCTE-Signalling/blob/master/images/Example-scte-timeline.png)
 
 As can be seen from the diagram above there can be an number of markers with
 the same time point. However this should not force them all to be signalled as a
