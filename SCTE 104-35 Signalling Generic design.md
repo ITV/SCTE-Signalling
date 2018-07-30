@@ -23,13 +23,13 @@ Version: 0.1
       - [Single message per frame](./SCTE%20104-35%20Signalling%20Generic%20design.md#322-single-message-per-frame)
    - [SCTE-104 over TCP/IP](./SCTE%20104-35%20Signalling%20Generic%20design.md#33-scte-104-over-tcpip)
 - [Generic capabilities](./SCTE%20104-35%20Signalling%20Generic%20design.md#4-generic-capabilities)
-   - PID mapping
-   - Message Aggregation
-   - SCTE-104 processing configurations
-- SCTE-104/35 Message Types
-   - Splice_Insert
-   - Time_Signal
-   - Splice_Null Messages
+   - [PID mapping](./SCTE%20104-35%20Signalling%20Generic%20design.md#41-pid-mapping)
+   - [Message Aggregation](./SCTE%20104-35%20Signalling%20Generic%20design.md#42-message-aggregation)
+   - [SCTE-104 processing configurations](./SCTE%20104-35%20Signalling%20Generic%20design.md#43-scte-104-processing-configurations)
+- [SCTE-104/35 Message Types](./SCTE%20104-35%20Signalling%20Generic%20design.md#5-scte-10435-message-types)
+   - [Splice_Insert](./SCTE%20104-35%20Signalling%20Generic%20design.md#51-splice_insert)
+   - [Time_Signal](./SCTE%20104-35%20Signalling%20Generic%20design.md#52-time_signal)
+   - [Splice_Null Messages](./SCTE%20104-35%20Signalling%20Generic%20design.md#53-splice_null-messages)
 
 
 ## 1. Introduction
