@@ -16,13 +16,13 @@ Version: 0.1
 - [Marker Solution Overview](./SCTE%20104-35%20Signalling%20Generic%20design.md#3-marker-solution-overview)
    - [SCTE-104](./SCTE%20104-35%20Signalling%20Generic%20design.md#31-scte-104)
    - [Multiple message flows](./SCTE%20104-35%20Signalling%20Generic%20design.md#311-multiple-message-flows)
-      - Splice Insert Messages
-      - Multiple Segmentation Descriptors
-   - SCTE-104 over VANC
-      - Multiple Segmentation Descriptors
-      - Single message per frame
-   - SCTE-104 over TCP/IP
-- Generic capabilities
+      - [Splice Insert Messages](./SCTE%20104-35%20Signalling%20Generic%20design.md#312-splice-insert-messages)
+      - [Multiple Segmentation Descriptors](./SCTE%20104-35%20Signalling%20Generic%20design.md#313-multiple-segmentation-descriptors)
+   - [SCTE-104 over VANC](./SCTE%20104-35%20Signalling%20Generic%20design.md#32-scte-104-over-vanc)
+      - [Multiple Segmentation Descriptors](./SCTE%20104-35%20Signalling%20Generic%20design.md#321-multiple-segmentation-descriptors)
+      - [Single message per frame](./SCTE%20104-35%20Signalling%20Generic%20design.md#322-single-message-per-frame)
+   - [SCTE-104 over TCP/IP](./SCTE%20104-35%20Signalling%20Generic%20design.md#33-scte-104-over-tcpip)
+- [Generic capabilities](./SCTE%20104-35%20Signalling%20Generic%20design.md#4-generic-capabilities)
    - PID mapping
    - Message Aggregation
    - SCTE-104 processing configurations
